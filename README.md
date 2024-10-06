@@ -2,39 +2,95 @@ EMAIL SPAM DETECTION
 
 ![20945480](https://user-images.githubusercontent.com/118047264/226919729-d56fbf6c-ce33-41cb-b2ae-dad1141238e7.jpg)
 
-One of the primary methods for spam mail detection is email filtering. It involves categorize incoming emails into spam and non-spam. Machine learning algorithms can be trained to filter out spam mails based on their content and metadata.
+Spam Mail Detection with Machine Learning
 
-DESCRIPTION
+Spam emails can be a major nuisance, but machine learning offers a powerful way to filter them out automatically. This project demonstrates how to build a spam detection model using Python and deploy it as a web application with Streamlit.
 
-• The project code completely done using Python
+Project Overview
 
-• Dataset taken from kaggle, link: https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset/code
+Dataset: SMS Spam Collection Dataset from Kaggle (https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset/code)
+Packages: pandas for data manipulation, scikit-learn for machine learning, matplotlib/seaborn for data visualization, and Streamlit for web app deployment.
+Process: Data preprocessing, NLP techniques, text classification using Multinomial Naive Bayes (MNB), model evaluation, and Streamlit deployment.
+Model Description
 
-• Required packages installed, that are pandas, re, nltk, sklearn, seaborn, matplotlib, tqdm, time
+The core of this project is a Multinomial Naive Bayes (MNB) classifier, well-suited for text classification based on word frequency. It analyzes the frequency of words in emails and their association with spam/ham labels to predict whether a new email is likely spam or not.
 
-• Data Preprocessing, NLP, Classification and Classification report these are the operations performed
+Code Breakdown:
 
-• Logistic Regression used as classification model for this project to get high accuracy for the text data perfomed from NLP operations.
+1. Data Loading and Exploration
 
-• Visualising confusion matrix by heatmap to get clear performance of the classification model
+Import libraries (pandas, scikit-learn, matplotlib)
+Load the spam dataset using pandas
+Explore data shape, information, basic statistics
+Perform data cleaning (missing values, duplicates)
+Visualize spam distribution
 
-• Finally, Classification report has been executed.
+2. Data Preprocessing
 
+Create a new target variable ("Spam") based on the "Category" column
+Generate a WordCloud visualization to explore frequently used words in spam emails
 
-Other Key steps to Spam Mail Detection:
+3. Feature Engineering
 
-• Email Filtering: One of the primary methods for spam mail detection is email filtering. It involves categorize incoming emails into spam and non-spam. Machine learning algorithms can be trained to filter out spam mails based on their content and metadata.
+Apply CountVectorizer to convert text messages into numerical features based on word frequency
 
-• Natural Language Processing: Natural Language Processing (NLP) is a technique that enables machines to understand and process human language. It plays a crucial role in spam detection, as it helps in extracting meaningful features from emails such as subject, body, and attachments.
+4. Model Training and Evaluation
 
-• Text Classification: Text classification is a supervised learning technique used for spam detection. It involves labelling emails as spam or non-spam based on their features, such as the presence of certain keywords, tone, or grammar.
+Split the data into training and testing sets
+Implement a evaluate_model function that:
+Fits the MNB model to the training data
+Predicts labels for training and testing sets
+Computes and displays evaluation metrics (confusion matrix, ROC curve, classification report)
 
-• Feature Engineering: Feature engineering is the process of selecting relevant features from the email to classify it as spam or non-spam. It involves extracting features such as the sender's email address, the presence of certain words or phrases, and the length of the email.
+5. Spam Detection Function:
 
-• Supervised Learning: Supervised learning is a technique that involves training the model on labelled data to predict the labels of new, unlabeled data. It is widely used in spam detection for text classification tasks. 
+Create a detect_spam function that takes an email message as input
+Uses the trained MNB model to predict whether the email is spam or not
 
-• Unsupervised Learning: Unsupervised learning is a technique used to find hidden patterns in the data without the need for labelled data. It can be used for anomaly detection, clustering, and association rule mining.
+6. Streamlit Deployment
 
-• Deep Learning: Deep learning is a subfield of machine learning that involves training deep neural networks with multiple hidden layers to learn complex features from the data. It has shown great promise in spam detection tasks.
+Create a Streamlit app using streamlit.io
+Display a user-friendly interface with a text box for entering email messages
+When a user submits an email, call the detect_spam function and display the prediction
 
-• Neural Networks: Neural networks are a type of deep learning model inspired by the human brain. They can be trained to extract meaningful features from emails and classify them as spam or non-spam.
+Example Usage:
+
+Python
+sample_email = 'Free Tickets for IPL'
+result = detect_spam(sample_email)
+print(result)  # Output: "This is a Spam Email!"
+
+Use code with caution.
+
+Streamlit App Example:
+
+Python
+import streamlit as st
+
+# Load the trained model (replace with your model loading logic)
+model = ...  # Load your trained MNB model from disk
+
+def detect_spam(email_text):
+    prediction = model.predict([email_text])
+    if prediction == 0:
+        return "This is a Ham Email!"
+    else:
+        return "This is a Spam Email!"
+
+st.title("Spam Email Detection")
+email_text = st.text_input("Enter an email message:")
+
+if email_text:
+    result = detect_spam(email_text)
+    st.write(result)
+Use code with caution.
+
+Deployment Instructions:
+
+Install Streamlit: pip install streamlit
+Create a Python file (app.py) with the Streamlit app code.
+In the terminal, navigate to the directory containing app.py and run: streamlit run app.py
+Open http://localhost:8501 in your web browser to access the app.
+Key Takeaways:
+
+This project demonstrates a practical approach to spam detection using machine learning and its deployment as a web application. Explore the code for a deeper understanding and make adjustments to improve the model's performance. By understanding the MNB model and its application, you can delve into further advancements in text classification and spam filtering.
