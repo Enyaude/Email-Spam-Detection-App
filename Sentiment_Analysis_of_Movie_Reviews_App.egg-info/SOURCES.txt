@@ -1,0 +1,8 @@
+README.md
+setup.py
+Sentiment_Analysis_of_Movie_Reviews_App.egg-info/PKG-INFO
+Sentiment_Analysis_of_Movie_Reviews_App.egg-info/SOURCES.txt
+Sentiment_Analysis_of_Movie_Reviews_App.egg-info/dependency_links.txt
+Sentiment_Analysis_of_Movie_Reviews_App.egg-info/requires.txt
+Sentiment_Analysis_of_Movie_Reviews_App.egg-info/top_level.txt
+data/app2.py
